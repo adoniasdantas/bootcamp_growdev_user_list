@@ -137,7 +137,8 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         height: 30,
                       ),
                       TextFormField(
-                        initialValue: user?.age != null ? user?.age.toString() : '',
+                        initialValue:
+                            user?.age != null ? user?.age.toString() : '',
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(hintText: 'Age'),
                         validator: (value) {
@@ -209,20 +210,35 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                 ),
               ),
             ),
-            RaisedButton(
-              onPressed: save,
-              color: Theme.of(context).primaryColor,
-              child: Text(
-                user?.id == null ? 'SAVE' : 'UPDATE',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Color(0xfff24fdb),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
+                SizedBox(width: 20),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.check,
+                      color: Colors.white,
+                    ),
+                    onPressed: save,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
