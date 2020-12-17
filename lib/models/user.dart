@@ -3,7 +3,7 @@ import 'dart:io';
 class User {
   int id;
   String name;
-  String age;
+  int age;
   String email;
   String document;
   bool active;

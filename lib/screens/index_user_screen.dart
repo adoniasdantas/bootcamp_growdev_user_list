@@ -74,11 +74,20 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
           future: getUsers,
           builder: (_context, AsyncSnapshot<List<User>> snapshot) {
             if (!snapshot.hasData) {
+              print(snapshot.connectionState);
+              print(snapshot.hasError);
+              print(snapshot.error);
+              print(snapshot.data);
               print('snapshot = $snapshot');
               return Center(
                 child: Text('There are no users!'),
               );
             }
+
+            print(snapshot.connectionState);
+            print(snapshot.hasError);
+            print(snapshot.error);
+            print(snapshot.data);
 
             if (snapshot.hasError) {
               return Center(

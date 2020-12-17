@@ -137,17 +137,20 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         height: 30,
                       ),
                       TextFormField(
-                        initialValue: user?.age,
+                        initialValue: user?.age != null ? user?.age.toString() : '',
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(hintText: 'Age'),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'This field is required';
                           }
+                          if (int.tryParse(value) == null) {
+                            return 'This field must be a number';
+                          }
                           return null;
                         },
                         onSaved: (value) {
-                          user.age = value;
+                          user.age = int.tryParse(value);
                         },
                       ),
                       SizedBox(
