@@ -76,13 +76,13 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
             if (!snapshot.hasData) {
               print('snapshot = $snapshot');
               return Center(
-                child: Text('Não há usuários salvos'),
+                child: Text('There are no users!'),
               );
             }
 
             if (snapshot.hasError) {
               return Center(
-                child: Text('Erro ${snapshot.error}'),
+                child: Text('Error ${snapshot.error}'),
               );
             }
 
@@ -147,7 +147,7 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
                           ),
                         ),
                         title: Text(
-                          '${user.name}, ${user.age} anos',
+                          '${user.name}, ${user.age} years old',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -156,8 +156,8 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('CPF: ${user.document}'),
-                            Text('E-mail: ${user.email}'),
+                            Text('Document: ${user.document}'),
+                            Text('Email: ${user.email}'),
                           ],
                         ),
                         isThreeLine: true,

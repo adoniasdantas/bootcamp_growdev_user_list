@@ -45,7 +45,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
   void save() async {
     if (!_formKey.currentState.validate()) {
       showSnackBar(
-        message: 'Preencha os campos corretamente!',
+        message: 'Fill the fields correctly!',
         color: Colors.red,
       );
       return;
@@ -57,7 +57,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
       var updated = await repository.update(user);
       if (!updated) {
         showSnackBar(
-          message: 'Usuário não atualizado',
+          message: 'User not updated!',
           color: Colors.red,
         );
         print('updateduser = $user');
@@ -122,10 +122,10 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                       TextFormField(
                         initialValue: user?.name,
-                        decoration: InputDecoration(hintText: 'Nome'),
+                        decoration: InputDecoration(hintText: 'Name'),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Este campo é obrigatório';
+                            return 'This field is required';
                           }
                           return null;
                         },
@@ -139,10 +139,10 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       TextFormField(
                         initialValue: user?.age,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(hintText: 'Idade'),
+                        decoration: InputDecoration(hintText: 'Age'),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Este campo é obrigatório';
+                            return 'This field is required';
                           }
                           return null;
                         },
@@ -159,7 +159,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         decoration: InputDecoration(hintText: 'Email'),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Este campo é obrigatório';
+                            return 'This field is required';
                           }
                           return null;
                         },
@@ -172,10 +172,10 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                       TextFormField(
                         initialValue: user?.document,
-                        decoration: InputDecoration(hintText: 'Documento'),
+                        decoration: InputDecoration(hintText: 'Document'),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Este campo é obrigatório';
+                            return 'This field is required';
                           }
                           return null;
                         },
@@ -198,7 +198,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                             },
                             activeColor: Theme.of(context).primaryColor,
                           ),
-                          Text(user.active ? 'Ativo' : 'Inativo'),
+                          Text(user.active ? 'Active' : 'Inactive'),
                         ],
                       ),
                     ],
