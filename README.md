@@ -1,16 +1,12 @@
 # bootcamp_growdev_user_list
 
-A new Flutter project.
+A Flutter project developed as a test for my bootcamp at Growdev.
 
-## Getting Started
+## About the project
 
-This project is a starting point for a Flutter application.
+Project using Flutter, Sqflite package and Image picker package.
 
-A few resources to get you started if this is your first Flutter project:
+We were expected to practice Persistence, FutureBuilder, Form (with validation) to finish the project.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Tryed to apply the visual from 
+[this](https://dribbble.com/shots/2050580-List-to-Edit-Screen-Transition) and [this](https://dribbble.com/shots/2496109-A-collection-of-popular-apps)
