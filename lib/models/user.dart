@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class User {
   int id;
   String name;
@@ -5,6 +7,7 @@ class User {
   String email;
   String document;
   bool active;
+  File image;
 
   User({
     this.name,
@@ -21,6 +24,7 @@ class User {
         age = json['age'],
         email = json['email'],
         document = json['document'],
+        image = json['image'] != null ? File(json['image']) : null,
         active = (json['active'] as int) == 1;
 
   Map<String, dynamic> toMap() {
@@ -30,12 +34,13 @@ class User {
       'age': age,
       'email': email,
       'document': document,
+      'image': image?.path,
       'active': active ? 1 : 0,
     };
   }
 
   @override
-  String toString() {    
+  String toString() {
     return 'nome = $name, age = $age, email=$email';
   }
 }

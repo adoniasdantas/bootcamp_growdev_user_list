@@ -74,9 +74,15 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
           future: getUsers,
           builder: (_context, AsyncSnapshot<List<User>> snapshot) {
             if (!snapshot.hasData) {
-              print(snapshot.error);
+              print('snapshot = $snapshot');
               return Center(
                 child: Text('Não há usuários salvos'),
+              );
+            }
+
+            if (snapshot.hasError) {
+              return Center(
+                child: Text('Erro ${snapshot.error}'),
               );
             }
 
@@ -120,6 +126,7 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
                     direction: DismissDirection.endToStart,
                     child: Container(
                       decoration: BoxDecoration(
+                        color: Colors.grey[200],
                         border: Border(
                           right: BorderSide(
                             width: 10.0,
@@ -129,11 +136,15 @@ class _IndexUserScreenState extends State<IndexUserScreen> {
                         ),
                       ),
                       child: ListTile(
-                        leading: Icon(
-                          user.active
-                              ? Icons.check_circle
-                              : Icons.highlight_off,
-                          color: user.active ? Colors.green : Colors.red,
+                        leading: Hero(
+                          tag: user.id.toString(),
+                          child: CircleAvatar(
+                            backgroundImage: user.image == null
+                                ? AssetImage('assets/user.jpg')
+                                : FileImage(
+                                    user.image,
+                                  ),
+                          ),
                         ),
                         title: Text(
                           '${user.name}, ${user.age} anos',

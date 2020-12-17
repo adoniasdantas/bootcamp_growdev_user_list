@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:bootcamp_growdev_user_list/infra/db.dart';
 import 'package:bootcamp_growdev_user_list/models/user.dart';
 import 'package:bootcamp_growdev_user_list/repositories/user_repository.dart';
@@ -15,10 +17,29 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
 
   User user;
 
+  File file;
+
+  final picker = ImagePicker();
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     user = (ModalRoute.of(context).settings?.arguments as User) ?? User();
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        setState(() {
+          user.image = File(pickedFile.path);
+          file = File(pickedFile.path);
+        });
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
   void save() async {
@@ -81,6 +102,24 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
+                      GestureDetector(
+                        onTap: getImage,
+                        child: CircleAvatar(
+                          radius: 55,
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: Hero(
+                            tag: user?.id?.toString() ?? '',
+                            child: CircleAvatar(
+                              radius: 50,
+                              backgroundImage: user.image == null
+                                  ? AssetImage('assets/user.jpg')
+                                  : FileImage(
+                                      user.image,
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ),
                       TextFormField(
                         initialValue: user?.name,
                         decoration: InputDecoration(hintText: 'Nome'),

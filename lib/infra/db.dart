@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DB {
   Database _instance;
-  static const VERSION_DB = 11;
+  final versionDB = 5;
 
   static final DB _db = DB._internal();
 
@@ -24,7 +24,7 @@ class DB {
     final pathDB = await getDatabasesPath();
     final sqlite = openDatabase(
       join(pathDB, 'crud_users.db'),
-      version: VERSION_DB,
+      version: versionDB,
       onCreate: (db, version) {
         print('onCreate $version');
 
@@ -35,13 +35,14 @@ class DB {
             age INTEGER,
             document TEXT,
             email TEXT,
-            active INTEGER
+            active INTEGER,
+            image TEXT
           );          
         ''');
       },
       onUpgrade: (db, oldVersion, newVersion) {
         print('oldVersion $oldVersion');
-        print('newVersion $newVersion');        
+        print('newVersion $newVersion');
       },
     );
 

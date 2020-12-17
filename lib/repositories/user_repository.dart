@@ -9,24 +9,21 @@ class UserRepository {
   Future<List<User>> index() async {
     var instance = await _db.getInstance();
     print('getUsers');
+    await Future.delayed(Duration(seconds: 2));
+    var usersDB = await instance.query('users');
 
-    var users = await instance.query('users');
-
-    return List.generate(users.length, (index) {
-      return User(
-        id: users[index]['id'],
-        name: users[index]['name'],
-        document: users[index]['document'],
-        active: users[index]['active'] == 0 ? false : true,
-        age: users[index]['age'],
-      );
+    usersDB.forEach((element) {
+      print(element);
     });
+
+    var users = usersDB.map((user) => User.fromJson(user)).toList();
+    return users;
   }
 
   Future<int> store(User user) async {
     var instance = await _db.getInstance();
 
-    final idUser = await instance.insert('users', user.toMap());    
+    final idUser = await instance.insert('users', user.toMap());
 
     return idUser;
   }
